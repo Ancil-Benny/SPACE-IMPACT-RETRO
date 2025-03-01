@@ -1,22 +1,144 @@
+PROJECTS/space_impact/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Space Impact Game</title>
-    <!-- Include Phaser from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
-    <!-- Load our main module -->
-    <script type="module" src="js/main.js"></script>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: #000;
-        font-family: Arial, sans-serif;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- The game canvas will be automatically injected by Phaser -->
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Impact 3</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <!-- Fullscreen Canvas -->
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Game HUD -->
+        <div id="game-hud" class="overlay">
+            <div class="hud-top">
+                <div id="score">SCORE: 0</div>
+                <div id="level-display">LEVEL: 1</div>
+            </div>
+            <div class="hud-bottom">
+                <div id="weapon-display">WEAPON: STANDARD</div>
+                <div id="lives"></div>
+                <div id="energy-bar-container">
+                    <div id="energy-bar"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Level Start Screen -->
+        <div id="level-start" class="overlay screen">
+            <h2>LEVEL <span id="level-number">1</span></h2>
+            <h3 id="level-name">The Outer Rim</h3>
+            <p id="level-description">Defend the outer colonies from alien invaders</p>
+            <div class="press-key">PRESS SPACE TO START</div>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="game-over" class="overlay screen">
+            <h2>GAME OVER</h2>
+            <div id="final-score">SCORE: 0</div>
+            <div id="high-score">HIGH SCORE: 0</div>
+            <div class="menu-options">
+                <button id="retry-btn">RETRY</button>
+                <button id="main-menu-btn">MAIN MENU</button>
+            </div>
+        </div>
+        
+        <!-- Pause Menu -->
+        <div id="pause-menu" class="overlay screen">
+            <h2>PAUSED</h2>
+            <div class="menu-options">
+                <button id="resume-btn">RESUME</button>
+                <button id="settings-btn-pause">SETTINGS</button>
+                <button id="quit-btn">QUIT TO MENU</button>
+            </div>
+        </div>
+        
+        <!-- Home Screen -->
+        <div id="home-screen" class="overlay screen active">
+            <div class="logo">SPACE IMPACT 3</div>
+            <div class="menu-options">
+                <button id="start-btn">NEW GAME</button>
+                <button id="continue-btn">CONTINUE</button>
+                <button id="settings-btn">SETTINGS</button>
+                <button id="credits-btn">CREDITS</button>
+            </div>
+            <div class="version">v1.0</div>
+        </div>
+        
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="overlay screen">
+            <h2>SETTINGS</h2>
+            <div class="settings-container">
+                <div class="setting-item">
+                    <label for="music-toggle">MUSIC</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="music-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="sfx-toggle">SOUND EFFECTS</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="sfx-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="difficulty-select">DIFFICULTY</label>
+                    <select id="difficulty-select">
+                        <option value="easy">EASY</option>
+                        <option value="normal" selected>NORMAL</option>
+                        <option value="hard">HARD</option>
+                    </select>
+                </div>
+            </div>
+            <button id="back-btn" class="menu-btn">BACK</button>
+        </div>
+        
+        <!-- Credits Screen -->
+        <div id="credits-screen" class="overlay screen">
+            <h2>CREDITS</h2>
+            <div class="credits-content">
+                <p>SPACE IMPACT 3</p>
+                <p>A tribute to the classic Nokia game</p>
+                <p>Developed by: Your Name</p>
+                <p>Graphics: Space Assets</p>
+                <p>Sound: Various Artists</p>
+            </div>
+            <button id="credits-back-btn" class="menu-btn">BACK</button>
+        </div>
+        
+        <!-- Weapon Pickup Notification -->
+        <div id="weapon-pickup" class="notification">
+            <div id="weapon-name">NEW WEAPON: LASER</div>
+        </div>
+        
+        <!-- Level Complete -->
+        <div id="level-complete" class="overlay screen">
+            <h2>LEVEL COMPLETE!</h2>
+            <div class="stats">
+                <div>ENEMIES DESTROYED: <span id="enemies-killed">0</span></div>
+                <div>ACCURACY: <span id="accuracy-stat">0%</span></div>
+                <div>BONUS: <span id="level-bonus">0</span></div>
+                <div>TOTAL SCORE: <span id="total-score">0</span></div>
+            </div>
+            <div class="press-key">PRESS SPACE TO CONTINUE</div>
+        </div>
+    </div>
+
+    <!-- Load scripts -->
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/weapons.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/powerups.js"></script>
+    <script src="scripts/enemies.js"></script>
+    <script src="scripts/levels.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
 </html>
